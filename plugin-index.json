@@ -1,0 +1,65 @@
+{
+  "format": 1,
+  "title": "drawing5",
+  "description": "Плагины drawing5 для DeepSeek Harness: облачный доступ к комплектам чертежей.",
+  "metadata": {
+    "categories": {
+      "engineering": {
+        "title": {
+          "en": "Engineering",
+          "ru": "Инженерия"
+        }
+      }
+    },
+    "labels": {
+      "mcp": {
+        "title": {
+          "en": "MCP",
+          "ru": "MCP"
+        }
+      }
+    }
+  },
+  "plugins": [
+    {
+      "name": "dsh-plugin-drawing5",
+      "title": {
+        "en": "drawing5 — чертежи в DeepSeek Harness",
+        "ru": "drawing5 — чертежи в DeepSeek Harness"
+      },
+      "description": {
+        "en": "Adds the drawing5 MCP server to the harness: sheet navigation, full-text search across the drawing, sheets and stamps, PDF upload.",
+        "ru": "Добавляет MCP-сервер drawing5: навигация по листам, полнотекстовый поиск по чертежу, листы и штампы, загрузка PDF."
+      },
+      "author": "devBIM",
+      "homepage": "https://drawing5.dev-bim.com",
+      "metadata": {
+        "category": "engineering",
+        "keywords": [
+          "bim",
+          "cad",
+          "drawing",
+          "mcp",
+          "чертеж"
+        ],
+        "labels": [
+          "mcp"
+        ]
+      },
+      "versions": [
+        {
+          "version": "0.2.0",
+          "publishTimestamp": 1794220289,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/devbim26/dsh-plugin-drawing5.git",
+            "commit": "1189a2ea6da4555cc3f4df3c7e05e86b0abf056b"
+          },
+          "engines": {
+            "dsh": ">=0.2.0"
+          }
+        }
+      ]
+    }
+  ]
+}

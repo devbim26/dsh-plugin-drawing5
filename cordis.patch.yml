@@ -1,0 +1,41 @@
+# Слой конфигурации плагина dsh-plugin-drawing5.
+#
+# Плагин поднимает одно MCP-соединение с облачным сервером drawing5:
+# в модели появляются инструменты mcp__drawing5__* (list_developments,
+# list_houses, list_documents, upload_pdf, get_document, list_sheets, search,
+# get_sheet, get_sheet_images, extract_stamps, get_health).
+#
+# АДРЕС И ТОКЕН ЧИТАЮТСЯ ИЗ ПЕРЕМЕННЫХ ОКРУЖЕНИЯ ПРОЦЕССА dsh:
+#   DRAWING5_SERVER_URL — адрес сервера БЕЗ /mcp (по умолчанию https://drawing5.dev-bim.com)
+#   DRAWING5_API_KEY     — Bearer-токен клиента
+# Задать один раз для пользователя (Windows):
+#   setx DRAWING5_API_KEY <токен>
+#   setx DRAWING5_SERVER_URL https://drawing5.dev-bim.com
+# После setx приложение нужно перезапустить: переменные читаются при старте.
+#
+# Значения по умолчанию можно переопределить в профиле:
+#   ~/.dsh/profiles/<профиль>/cordis.patch.yml — своя строка с id: drawing5-mcp
+#   (обычная строка без `insert:` ПЕРЕОПРЕДЕЛЯЕТ строку плагина целиком).
+#
+# Вторая строка — собственный модуль пакета: './index.js' резолвится рядом
+# с этим файлом. Он регистрирует справочник drawing5-mcp в каталоге скиллов
+# и пишет в лог подсказку, если токен не задан.
+#
+# Проверка слоя:
+#   dsh --profile <профиль> --dump-config   # ищите "# == dsh-plugin-drawing5"
+- insert:
+    - id: drawing5-mcp
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: drawing5
+        transport: streamable-http
+        url: !!js (process.env.DRAWING5_SERVER_URL ?? "https://drawing5.dev-bim.com") + "/mcp"
+        headers:
+          Authorization: !!js '`Bearer ${process.env.DRAWING5_API_KEY ?? ""}`'
+        toolCallTimeoutMs: 120000
+- insert:
+    - id: drawing5-skill
+      name: './index.js'
+      config:
+        serverUrl: !!js process.env.DRAWING5_SERVER_URL ?? "https://drawing5.dev-bim.com"
+        tokenEnv: DRAWING5_API_KEY

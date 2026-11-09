@@ -1,0 +1,36 @@
+{
+  "name": "dsh-plugin-drawing5",
+  "version": "0.2.0",
+  "description": "Облачный MCP-сервер drawing5 (чертежи, листы, штампы) для DeepSeek Harness: инструменты mcp__drawing5__* и справочник drawing5-mcp",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "skills/drawing5-mcp/SKILL.md",
+    "plugin-index.json",
+    "README.md"
+  ],
+  "keywords": [
+    "deepseek",
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "mcp",
+    "bim",
+    "cad",
+    "drawing"
+  ],
+  "license": "UNLICENSED",
+  "engines": {
+    "dsh": ">=0.2.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
